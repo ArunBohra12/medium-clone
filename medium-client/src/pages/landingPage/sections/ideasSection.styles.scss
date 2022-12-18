@@ -1,0 +1,45 @@
+.ideas-section {
+  border-bottom: 1px solid $color-black;
+
+  &-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10.5rem;
+    border-bottom: 1px solid $color-black;
+
+    h2 {
+      margin: 0;
+      font-family: $serif-font-family-2;
+      color: #000;
+      font-size: 7.3vw;
+      line-height: 1.2;
+      font-weight: 400;
+      letter-spacing: -0.35vw;
+    }
+  }
+
+  .medium-logo-in-hero {
+    margin-left: 1.2vw;
+    overflow: visible;
+    width: 26vw;
+    padding-bottom: 0.3vw;
+  }
+}
+
+.idea-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 1.8rem;
+  color: $color-black-1;
+
+  p {
+    padding: 3rem 6rem;
+    border-right: 1px solid $color-black-1;
+  }
+
+  iframe {
+    border: none;
+  }
+}

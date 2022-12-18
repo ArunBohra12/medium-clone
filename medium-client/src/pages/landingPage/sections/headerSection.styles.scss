@@ -1,0 +1,60 @@
+.header-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #ffc017;
+  padding: 10rem 10%;
+  border-bottom: 1px solid #000;
+
+  @media only screen and (max-width: 1150px) {
+    padding: 10rem 1.5rem;
+  }
+}
+
+.hero-div {
+  h1 {
+    font-size: 10rem;
+    line-height: 1;
+    margin-bottom: 2.8rem;
+    color: $color-black-1;
+    letter-spacing: -4px;
+    word-spacing: -10px;
+  }
+
+  p {
+    font-size: 2.4rem;
+    margin-bottom: 2.8rem;
+  }
+
+  button {
+    font-size: 2rem;
+  }
+
+  @media only screen and (max-width: 580px) {
+    h1 {
+      font-size: 7rem;
+      letter-spacing: 0;
+      word-spacing: 0;
+    }
+  }
+}
+
+.m-text-image {
+  position: absolute;
+  width: 55rem;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  @media only screen and (max-width: 930px) {
+    right: -10rem;
+  }
+
+  @media only screen and (max-width: 930px) {
+    right: -16rem;
+  }
+
+  @media only screen and (max-width: 760px) {
+    display: none;
+  }
+}

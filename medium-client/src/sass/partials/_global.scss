@@ -1,0 +1,22 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  font-family: $sans-serif-font-famiy;
+  text-rendering: optimizeLegibility;
+  color: $color-black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $serif-font-family-2;
+}

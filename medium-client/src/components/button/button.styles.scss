@@ -1,0 +1,28 @@
+.btn {
+  padding: 0.5rem 2.5rem;
+  border-radius: 200px;
+  font-size: 1.7rem;
+  cursor: pointer;
+
+  &-black {
+    background-color: $color-black-1;
+    border: 2px solid $color-black-1;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-black-2;
+      border: 2px solid $color-black-2;
+    }
+  }
+
+  &-green {
+    color: #fff;
+    background-color: $color-green-1;
+    border: 2px solid $color-green-1;
+
+    &:hover {
+      background-color: $color-green-2;
+      border: 2px solid $color-green-2;
+    }
+  }
+}
