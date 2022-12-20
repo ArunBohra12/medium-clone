@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'Times New Roman';
-  src: '../../assets/fonts/times-roman-new.ttf';
-}
-
-@font-face {
-  font-family: 'Arial';
-  src: '../../assets/fonts/arial.ttf';
+  src: '/fonts/times-roman-new.ttf' format('ttf');
 }
 
 @font-face {
   font-family: 'GT Super Text Book';
-  src: local('GT Super Text Book') url('../../assets/fonts/gt-super-text-book.woff2') format('woff2');
+  src: url('/fonts/gt-super-text-book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Soehne';
+  src: url('/fonts/soehne-web.woff2') format('woff2');
 }
