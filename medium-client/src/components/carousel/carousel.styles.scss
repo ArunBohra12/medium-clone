@@ -1,0 +1,17 @@
+.carousel {
+  position: relative;
+
+  &-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.show {
+  visibility: visible;
+}
+
+.dont-show {
+  visibility: hidden;
+}

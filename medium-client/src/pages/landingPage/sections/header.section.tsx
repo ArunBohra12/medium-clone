@@ -10,7 +10,10 @@ const HeaderSection = (): JSX.Element => {
       <div className="hero-div">
         <div>
           <h1>Stay Curious</h1>
-          <p>Discover stories, thinking, and expertise<br /> from writers on any topic.</p>
+          <p>
+            Discover stories, thinking, and expertise
+            <br /> from writers on any topic.
+          </p>
           <Button>Start Reading</Button>
         </div>
       </div>
@@ -18,6 +21,6 @@ const HeaderSection = (): JSX.Element => {
       <img src={mTextImage} className="m-text-image" alt="Medium" />
     </header>
   );
-}
+};
 
 export default HeaderSection;

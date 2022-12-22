@@ -1,7 +1,9 @@
-import HeaderSection from './headerSection.section';
-import IdeasSection from './ideasSection.section';
+import HeaderSection from './header.section';
+import IdeasSection from './ideas.section';
+import TotalReaders from './totalReaders.section';
 
 export default {
   HeaderSection,
-  IdeasSection
+  IdeasSection,
+  TotalReaders
 }

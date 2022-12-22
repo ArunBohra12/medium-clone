@@ -1,0 +1,29 @@
+.user-review-image {
+  display: flex;
+  align-items: center;
+  height: 15rem;
+  gap: 1rem;
+
+  img {
+    height: 15rem;
+  }
+}
+
+.review-half-circle {
+  height: 95%;
+  width: 75px;
+  border-radius: 100%;
+  background-color: #f55189;
+}
+
+.review-small-circle {
+  width: 27px;
+  height: 80%;
+  border-radius: 100%;
+  background-color: #34a245;
+}
+
+.user-review-quote {
+  margin-top: 6.6rem;
+  margin-bottom: 2rem;
+}
