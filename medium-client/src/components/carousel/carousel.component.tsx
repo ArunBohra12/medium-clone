@@ -18,7 +18,8 @@ const Carousel = ({ items }: CarouselProps): JSX.Element => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter((prevSlideNo) => nextCounter(prevSlideNo));
-    }, 10000);
+    // }, 10000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);

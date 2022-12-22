@@ -1,17 +1,7 @@
-.carousel {
-  position: relative;
-
-  &-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-}
-
 .show {
-  visibility: visible;
+  display: block;
 }
 
 .dont-show {
-  visibility: hidden;
+  display: none;
 }

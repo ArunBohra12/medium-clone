@@ -6,7 +6,7 @@ import './totalReaders.styles.scss';
 
 const TotalReaders = (): JSX.Element => {
   return (
-    <div className="total-readers-section">
+    <section className="total-readers-section">
       <div className="total-readers-section-heading">
         <h2>Over 100 million users and growing</h2>
       </div>
@@ -17,7 +17,7 @@ const TotalReaders = (): JSX.Element => {
           ))}
         />
       </div>
-    </div>
+    </section>
   );
 };
 
