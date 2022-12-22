@@ -14,6 +14,7 @@ type ButtonProps = {
 const buttonVariants: { [variant: string]: string } = {
   black: 'btn-black',
   green: 'btn-green',
+  'light-green': 'btn-light-green',
 };
 
 const Button = ({

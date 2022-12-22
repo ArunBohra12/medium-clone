@@ -1,0 +1,45 @@
+.cta {
+  &-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 1.8rem;
+    color: $color-black-1;
+    border-bottom: 1px solid $color-black-1;
+
+    iframe {
+      outline: none;
+      border: none;
+    }
+
+    @media only screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+
+      .spinning-box {
+        display: none;
+      }
+    }
+  }
+
+
+  &-container {
+    padding: 3rem;
+    border-left: 1px solid $color-black-1;
+
+    h2 {
+      font-weight: 400;
+      font-size: 7.3vw;
+      line-height: 1;
+      color: #000;
+      margin-bottom: 15rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+      padding: 3rem 2rem;
+
+      h2 {
+        font-size: 4rem;
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}

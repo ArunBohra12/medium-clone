@@ -6,6 +6,8 @@ const LandingPage = (): JSX.Element => {
       <Sections.HeaderSection />
       <Sections.IdeasSection />
       <Sections.TotalReaders />
+      <Sections.CtaSection />
+      <Sections.Footer />
     </>
   );
 };

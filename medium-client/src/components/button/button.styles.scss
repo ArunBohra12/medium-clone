@@ -25,4 +25,15 @@
       border: 2px solid $color-green-2;
     }
   }
+
+  &-light-green {
+    color: #fff;
+    background-color: #34a245;
+    border: 2px solid #34a245;
+
+    &:hover {
+      background-color: #0a5215;
+      border: 2px solid #0a5215;
+    }
+  }
 }
