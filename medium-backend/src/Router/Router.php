@@ -2,29 +2,43 @@
 
 namespace App\Router;
 
-class Router {
-  public string $request;
+use Closure;
 
-  // The $routes array will contain our URI's and callbacks.
-  public array $routes = [];
+class Router {
+  private string $endpoint;
+  private string $method;
+
+  private array $routes = array(
+    'GET' => array(),
+    'POST' => array(),
+  );
 
   public function __construct(array $request) {
-    $this->request = basename($request['REQUEST_URI']);
+    $this->endpoint = $request['REQUEST_URI'];
+    $this->method = $request['REQUEST_METHOD'];
   }
 
-  // Returns true or false based on if uri exists in $this->routes array
-  private function hasRoute(string $uri) : bool {
-    return array_key_exists($uri, $this->routes);
+  private function isRouteRegistered(string $endPoint): bool {
+    if (!array_key_exists($this->method, $this->routes)) {
+      return false;
+    }
+
+    return array_key_exists($endPoint, $this->routes[$this->method]);
   }
 
-  // Add a route and a callback to our $routes array.
-  public function addRoute(string $uri, \Closure $func): void {
-    $this->routes[$uri] = $func;
+  public function get(string $route, Closure $callback): void {
+    $this->routes['GET'][$route] = $callback;
+  }
+
+  public function post(string $route, Closure $callback): void {
+    $this->routes['POST'][$route] = $callback;
   }
 
   public function run(): void {
-    if($this->hasRoute($this->request)) {
-      $this->routes[$this->request]->call($this);
+    if (!$this->isRouteRegistered($this->endpoint)) {
+      return;
     }
+
+    $this->routes[$this->method][$this->endpoint]->call($this);
   }
 }
