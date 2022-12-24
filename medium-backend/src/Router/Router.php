@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use App\Utils\Request;
 use Closure;
 
 class Router {
@@ -9,6 +10,8 @@ class Router {
   private string $method; // Request method
 
   // This will store the different handlers for different routes and methods
+  // This is done so that we are able to call different functions on the same routes
+  // but with different HTTP method
   private array $routes = array(
     'GET' => array(),
     'POST' => array(),
@@ -17,11 +20,12 @@ class Router {
   public function __construct(array $request) {
     $this->endpoint = $request['REQUEST_URI'];
     $this->method = $request['REQUEST_METHOD'];
+    new Request();
   }
 
-  /*
+  /**
    * Checks if the route is registered in $this->routes
-   * @params string $endPoint -> the route for on which request is being made
+   * @param string $endPoint -> the route for on which request is being made
    * @return bool -> true if route is registered otherwise false
    */
   private function isRouteRegistered(string $endPoint): bool {
@@ -32,25 +36,25 @@ class Router {
     return array_key_exists($endPoint, $this->routes[$this->method]);
   }
 
-  /*
+  /**
    * Register the get routes
-   * @params $route -> route for which the callback is registered
-   * @params $callback -> the callback function for the route
+   * @param string $route -> route for which the callback is registered
+   * @param Closure $callback -> the callback function for the route
    */
   public function get(string $route, Closure $callback): void {
     $this->routes['GET'][$route] = $callback;
   }
 
-  /*
+  /**
    * Register the post routes
-   * @params $route -> route for which the callback is registered
-   * @params $callback -> the callback function for the route
+   * @param string $route -> route for which the callback is registered
+   * @param Closure $callback -> the callback function for the route
    */
   public function post(string $route, Closure $callback): void {
     $this->routes['POST'][$route] = $callback;
   }
 
-  /*
+  /**
    * Checks if the current route is registered with a callback and runs the callback
    */
   public function run(): void {
