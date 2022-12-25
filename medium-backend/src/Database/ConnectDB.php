@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Connect;
+namespace Database\ConnectDB;
 
-class Connect {
+class ConnectDB {
   private string $host = 'localhost';
   private string $username = 'root';
   private string $password = 'arunbohra';

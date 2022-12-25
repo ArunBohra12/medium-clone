@@ -4,5 +4,8 @@
       "App\\": "src"
     },
     "classmap": ["src"]
+  },
+  "require": {
+    "ramsey/uuid": "^4.7"
   }
 }

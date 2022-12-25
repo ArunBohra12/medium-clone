@@ -1,8 +1,7 @@
 <?php
 
 use App\Router\Router;
-use App\User\User;
-use Database\Connect\Connect;
+use App\User\UserController;
 
 // Have everyone access the application
 header('Access-Control-Allow-Origin: *');
@@ -10,7 +9,7 @@ header('Access-Control-Allow-Headers: *');
 
 $router = new Router($_SERVER);
 
-$user = new User();
+$user = new UserController();
 
 // -------------------------------
 // REGISTER THE ROUTES
