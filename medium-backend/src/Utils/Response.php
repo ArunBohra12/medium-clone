@@ -27,12 +27,14 @@ class Response {
   /**
    * Set headers in the $this->responseHeaders variables
    * @param array $headers (key will be the header name and value will be the header value)
-   * @return void
+   * @return Response
    */
-  public function setHeaders(array $headers): void {
+  public function setHeaders(array $headers): Response {
     foreach ($headers as $headerName => $headerValue) {
       $this->responseHeaders[$headerName] = $headerValue;
     }
+
+    return $this;
   }
 
   /**
