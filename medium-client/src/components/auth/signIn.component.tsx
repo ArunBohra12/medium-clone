@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import FormGroup from '../formGroup/formGroup.component';
 import Button from '../button/button.component';
 
@@ -22,7 +21,7 @@ const SignIn = ({ setAuthPage }: signinProps): JSX.Element => {
         <p>No Account? <span className="navigate-auth-page" onClick={() => setAuthPage('signup')}>Create one</span></p>
       </div>
     </>
-  )
+  );
 };
 
 export default SignIn;
