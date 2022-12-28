@@ -36,6 +36,9 @@ class UserController implements UserInterface {
     }
   }
 
+  /**
+   * @throws \Exception
+   */
   public function signup(): void {
     $requestBody = $_REQUEST['requestBody'];
 
@@ -46,14 +49,25 @@ class UserController implements UserInterface {
 
     $this->validateUserDetails($name, $email, $password);
 
-    $signup = $this->user->signup($name, $email, $password);
-
-    $res = new Response(200, $signup);
-    $res->setHeaders(array('Content-Type' => 'application/json'));
-    $res->sendResponse();
+    $this->user->signup($name, $email, $password);
   }
 
+  /**
+   * @throws \Exception
+   */
   public function login(): void {
-    // TODO: Implement login() method.
+    $requestBody = $_REQUEST['requestBody'];
+
+    $email = $requestBody['email'];
+    $password = $requestBody['password'];
+
+    if (strlen(empty($email) || empty($password))) {
+      $res = new Response(400, array(
+        'message' => 'Please provide all the details',
+      ));
+      $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
+    }
+
+    $this->user->login($email, $password);
   }
 }

@@ -18,7 +18,7 @@ $router->post('/users', function () use ($user) {
   $user->signup();
 });
 
-$router->get('/users', function () use ($user) {
+$router->post('/login', function () use ($user) {
   $user->login();
 });
 

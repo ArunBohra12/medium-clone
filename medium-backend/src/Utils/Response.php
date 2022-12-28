@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use Exception;
+
 // All the response statuses
 const STATUSES = array(
   '2' => 'success',
@@ -55,5 +57,12 @@ class Response {
 
     print_r(json_encode($responseData));
     exit;
+  }
+
+  static function sendUncaughtException(Exception $exception): void {
+    $res = new Response(500, array(
+      'message' => $exception->getMessage(),
+    ));
+    $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
   }
 }

@@ -6,6 +6,8 @@
     "classmap": ["src"]
   },
   "require": {
-    "ramsey/uuid": "^4.7"
+    "ramsey/uuid": "^4.7",
+    "firebase/php-jwt": "^6.3",
+    "ext-mysqli": "*"
   }
 }
