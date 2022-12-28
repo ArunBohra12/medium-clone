@@ -2,8 +2,8 @@ import FormGroup from '../formGroup/formGroup.component';
 import Button from '../button/button.component';
 
 type signupProps = {
-  setAuthPage: React.Dispatch<React.SetStateAction<"signin" | "signup">>;
-}
+  setAuthPage: React.Dispatch<React.SetStateAction<'signin' | 'signup'>>;
+};
 
 const SignUp = ({ setAuthPage }: signupProps): JSX.Element => {
   return (
@@ -15,11 +15,18 @@ const SignUp = ({ setAuthPage }: signupProps): JSX.Element => {
         <FormGroup label="Your email" inputAttributes={{ type: 'email', placeholder: 'example@example.com' }} />
         <FormGroup label="Your password" inputAttributes={{ type: 'password', placeholder: '********' }} />
 
-        <Button type="submit" variant="black">Sign Up</Button>
+        <Button type="button" variant="black">
+          Sign Up
+        </Button>
       </form>
 
       <div className="change-auth-page">
-        <p>Already have an account? <span className="navigate-auth-page" onClick={() => setAuthPage('signin')}>Sign in?</span></p>
+        <p>
+          Already have an account?
+          <span className="navigate-auth-page" onClick={() => setAuthPage('signin')}>
+            Sign in?
+          </span>
+        </p>
       </div>
     </>
   );

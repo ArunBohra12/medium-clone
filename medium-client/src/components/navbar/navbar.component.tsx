@@ -11,12 +11,12 @@ const Navbar = (): JSX.Element => {
       <img className="navbar-logo" src={logo} alt="Medium" />
 
       <nav className="navbar-links">
-        <Link to="/signin">Sign In</Link>
+        <Link to="/auth">Sign In</Link>
       </nav>
 
       <Button>Get started</Button>
     </div>
   );
-}
+};
 
 export default Navbar;
