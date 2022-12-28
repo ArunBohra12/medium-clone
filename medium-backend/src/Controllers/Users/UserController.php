@@ -70,4 +70,18 @@ class UserController implements UserInterface {
 
     $this->user->login($email, $password);
   }
+
+  public function protect(): void {
+    $token = explode(' ', $_SERVER['HTTP_AUTHORIZATION'])[1];
+
+    if (empty($token)) {
+      $res = new Response(401, array(
+        'message' => 'You are not logged in, please log in to gain access.'
+      ));
+
+      $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
+    }
+
+    $this->user->protect($token);
+  }
 }

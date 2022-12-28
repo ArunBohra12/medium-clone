@@ -3,7 +3,7 @@
 namespace App\User;
 
 use App\Utils\JwtUtils;
-use Firebase\JWT\JWT;
+use mysqli;
 use Ramsey\Uuid\Uuid;
 use Exception;
 
@@ -11,7 +11,7 @@ use App\Utils\Response;
 use Database\ConnectDB\ConnectDB;
 
 class UserModel {
-  private \mysqli|null|false $connection;
+  private mysqli|null|false $connection;
 
   public function __construct() {
     $db = new ConnectDB();
@@ -19,11 +19,10 @@ class UserModel {
   }
 
   /**
-   * Checks if user exist.
+   * Checks if user exists.
    * If user exists send User otherwise send the response "User doesn't exist"
    * @param string $email
    * @return array
-   * @throws Exception
    */
   private function checkUserExists(string $email): array {
     try {
@@ -48,6 +47,21 @@ class UserModel {
     } catch (Exception $exception) {
       Response::sendUncaughtException($exception);
     }
+  }
+
+  /**
+   * Signs a JWT and sends it to the client in order to log the user in
+   * @param string $userId
+   * @return void
+   */
+  private function signAndSendToken(string $userId): void {
+    $jwt = new JwtUtils();
+    $token = $jwt->encodeJwt(array('id' => $userId));
+
+    $res = new Response(200, array(
+      'jwt' => $token
+    ));
+    $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
   }
 
   /**
@@ -76,16 +90,8 @@ class UserModel {
       $usersSql->close();
       $loginSql->close();
 
-      $user = array(
-        'id' => $userId,
-        'name' => $name,
-        'email' => $email
-      );
-      $res = new Response(200, array(
-        'user' => $user,
-      ));
-      $res->setHeaders(array('Content-Type' => 'application/json'));
-      $res->sendResponse();
+      // Send the token to the client to log them in
+      $this->signAndSendToken($userId);
     } catch (Exception $exception) {
       Response::sendUncaughtException($exception);
     }
@@ -96,7 +102,6 @@ class UserModel {
    * @throws Exception
    */
   public function login(string $email, string $password): void {
-    $this->protect();
     $user = $this->checkUserExists($email);
     $isPasswordCorrect = password_verify($password, $user['password']);
 
@@ -107,13 +112,41 @@ class UserModel {
       $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
     }
 
-    $jwt = new JwtUtils();
-    $token = $jwt->encodeJwt(array('id' => $user['id']));
+    // Send the jwt to the client
+    $this->signAndSendToken($user['id']);
+  }
 
-    $res = new Response(200, array(
-      'jwt' => $token
-    ));
-    $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
+
+  /**
+   * Checks if user is logged in or not
+   * @param string $token
+   * @return void
+   */
+  public function protect(string $token): void {
+    try {
+      // Decode and verify the token
+      $jwt = new JwtUtils();
+      $decodedToken = json_decode(json_encode($jwt->decodeJwt($token)), true);
+
+      // Check if the user with the id exists
+      $sql = $this->connection->prepare('SELECT * FROM users WHERE users.id=?');
+      $sql->bind_param('s', $decodedToken['id']);
+      $sql->execute();
+      $result = $sql->get_result();
+      $user = $result->fetch_assoc();
+      $sql->close();
+
+      if ($user === null) {
+        $res = new Response(400, array(
+          'message' => 'User does not exist',
+        ));
+        $res->setHeaders(array('Content-Type' => 'application/json'))->sendResponse();
+      }
+
+      $_REQUEST['currentUser'] = $user;
+    } catch (Exception $exception) {
+      Response::sendUncaughtException($exception);
+    }
   }
 
   // Close the DB connection

@@ -21,6 +21,6 @@ class JwtUtils {
   }
 
   public function decodeJwt(string $jwt): \stdClass {
-    return JWT::decode($jwt, new Key($this->jwtSecret, 'HS256'));
+    return JWT::decode($jwt, new Key($this->jwtSecret, $this->algorithm));
   }
 }
